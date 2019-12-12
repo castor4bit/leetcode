@@ -2,13 +2,14 @@
 # @param {Integer} target
 # @return {Integer[]}
 def two_sum(nums, target)
-  nums.each_with_index do |n, i|
-    offset = i + 1
-    nums2 = nums.slice(offset..-1)
-    nums2.each_with_index do |m, j|
-      if n + m == target then
-        return [i, (offset + j)]
-      end
+  i = 0
+  nums.each do |n|
+    j = i + 1
+    nums2 = nums.slice(j..-1)
+    nums2.each do |m|
+      return [i, j] if n + m == target
+      j = j.succ
     end
+    i = i.succ
   end
 end
