@@ -2,17 +2,23 @@
 # @param {Integer} k
 # @return {Boolean}
 def is_possible_divide(nums, k)
-  nums.sort!
+  return false unless nums.size % k == 0
 
-  while nums.size >= k do
-    n = nums.first
-    arr = (n..(n + k - 1)).to_a
-    break unless arr == (nums & arr)
+  counts = Hash.new {|h,k| h[k] = 0 }
+  nums.each do |n|
+    counts[n] += 1
+  end
 
-    arr.each do |v|
-      nums.delete_at(nums.index(v))
+  while counts.size > 0 do
+    n = counts.keys.min
+
+    for i in n..(n + k - 1)
+      return false if counts[i] == 0
+
+      counts[i] -= 1
+      counts.delete_if {|k,v| v <= 0 }
     end
   end
 
-  nums.empty?
+  counts.empty?
 end
