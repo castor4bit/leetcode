@@ -1,30 +1,27 @@
 # @param {Integer[]} nums
 # @return {Integer}
 def max_sub_array(nums)
-  idx = 0
-  n = 0
-  while !nums[idx].nil? do
-    m = nums[idx]
-    if idx > 0 and n * m >= 0 then
-      nums[idx] += n
-      nums.delete_at(idx - 1)
-    else
-      idx += 1
-    end
+  return nums.first if nums.size == 1
 
-    n = m
+  def f(nums)
+    sum = 0
+    max = -1.0 / 0
+
+    nums.map {|n|
+      sum += n
+      max = sum if sum > max
+    }
+    max
   end
 
-  len = 1
-  max = nil
-  while len <= nums.size do
-    0.step(nums.size - len) do |n|
-      sum = nums.slice(n, len).sum
-      max = sum if max.nil? or max < sum
-    end
+  m = nums.size / 2
+  l = nums.slice(0..(m - 1))
+  r = nums.slice(m..-1)
 
-    len += 1
-  end
-
-  max
+  [
+    f(l.reverse) + f(r),
+    max_sub_array(l),
+    max_sub_array(r)
+  ].max
 end
+
