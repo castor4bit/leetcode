@@ -1,6 +1,6 @@
 require 'test/unit'
 require './100'
-require './treenode'
+require '../../structures/treenode'
 
 class LeetCodeSolutionTest < Test::Unit::TestCase
   def test_100

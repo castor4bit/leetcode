@@ -1,6 +1,6 @@
 require 'test/unit'
-require './listnode'
 require './083'
+require '../../structures/listnode'
 
 class LeetCodeSolutionTest < Test::Unit::TestCase
   def test_083
