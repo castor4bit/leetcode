@@ -2,10 +2,14 @@
 # @return {Integer}
 def max_profit(prices)
   max = 0
+  min = 1.0 / 0
 
-  for i in 0..(prices.size - 2)
-    price = prices.shift
-    max = [max, (prices.max - price)].max
+  prices.each do |price|
+    if price < min then
+      min = price
+    elsif (price - min) > max then
+      max = price - min
+    end
   end
 
   max
