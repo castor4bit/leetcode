@@ -4,7 +4,8 @@ def max_profit(prices)
   max = 0
 
   for i in 0..(prices.size - 2)
-    max = [max, (prices.slice((i + 1)..-1).max - prices[i])].max
+    price = prices.shift
+    max = [max, (prices.max - price)].max
   end
 
   max
