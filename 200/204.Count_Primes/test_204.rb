@@ -9,7 +9,6 @@ class LeetCodeSolutionTest < Test::Unit::TestCase
     assert_equal 1, count_primes(3)
     assert_equal 2, count_primes(4)
     assert_equal 4, count_primes(10)
-    assert_equal 4, count_primes(10)
     assert_equal 1229, count_primes(10000)
     assert_equal 9592, count_primes(100000)
     assert_equal 41537, count_primes(499979)

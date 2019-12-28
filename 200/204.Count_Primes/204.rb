@@ -1,24 +1,23 @@
 # @param {Integer} n
 # @return {Integer}
 def count_primes(n)
-  return 0 if n < 2
+  return 0 if n < 3
 
-  def is_prime(n)
-    return false if n <= 1
-    return true if n == 2
-    return false if n % 2 == 0
+  primes = Array.new(n, false)
 
-    3.step(Math.sqrt(n), 2) do |i|
-      return false if n % i == 0
+  i = 2
+  while i * i < n do
+    unless  primes[i] then
+      j = i
+      while j * i < n do
+        primes[i * j] = true
+        j += 1
+      end
     end
 
-    true
+    i += 1
   end
 
-  cnt = 0
-  for i in 2..(n - 1)
-    cnt += 1 if is_prime(i)
-  end
-
-  cnt
+  primes.slice!(0, 2)
+  primes.reduce(0) {|sum, p| sum += p ? 0 : 1 }
 end
