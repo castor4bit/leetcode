@@ -1,19 +1,20 @@
 # @param {Integer[]} nums
 # @return {Integer}
 def rob(nums)
-  max = 0
+  return 0 if nums.size == 0
+  return nums.max if nums.size <= 2
 
-  i = 0
-  while i < (2 ** nums.size - 1)
-    s = i.to_s(2)
-    if s.include?("11") then
-      pos = s.index("11")
-      i += s[pos..-1].gsub(/./, '0').sub(/^../, "1").to_i(2)
-      next
+  dp = Array.new(nums.size, 0)
+  dp[0] = nums[0]
+  dp[1] = nums.slice(0..1).max
+
+  for i in 2..(nums.size - 1)
+    for j in 2..(nums.size - 1)
+      next if i - j < 0
+
+      dp[i] = [dp[i], nums[i] + dp[i - j]].max
     end
-
-    i += 1
   end
 
-  max
+  dp.max
 end
