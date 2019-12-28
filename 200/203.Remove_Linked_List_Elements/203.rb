@@ -22,6 +22,9 @@ def remove_elements(head, val)
     end
   end
 
-  head = nil if !head.nil? and head.val == val
+  while !head.nil? and head.val == val do
+    head = head.next
+  end
+
   head
 end

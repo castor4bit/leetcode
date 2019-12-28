@@ -15,5 +15,8 @@ class LeetCodeSolutionTest < Test::Unit::TestCase
 
     head = ListNodeUtil.array_to_listnode([6, 6])
     assert_equal [], ListNodeUtil.listnode_to_array(remove_elements(head, 6))
+
+    head = ListNodeUtil.array_to_listnode([1, 2])
+    assert_equal [2], ListNodeUtil.listnode_to_array(remove_elements(head, 1))
   end
 end
