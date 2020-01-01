@@ -1,7 +1,16 @@
+Layout/EmptyLines:
+  AutoCorrect: false
+
+Layout/EmptyLinesAroundMethodBody:
+  AutoCorrect: false
+
 Style/Documentation:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/NumericLiterals:
   Enabled: false
 
 Style/StringLiterals:
