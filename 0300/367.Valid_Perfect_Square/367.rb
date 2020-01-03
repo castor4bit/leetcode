@@ -5,19 +5,16 @@ def is_perfect_square(num)
 
   a = 2
   b = num
-  while a != b
+  while a <= b
     m = a + (b - a) / 2
     mm = m ** 2
     return true if num == mm
 
     if num > mm
-      a = m
+      a = m + 1
     else
-      b = m
+      b = m - 1
     end
-
-    _m = a + (b - a) / 2
-    break if m == _m
   end
 
   false
