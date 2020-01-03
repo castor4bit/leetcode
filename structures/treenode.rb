@@ -1,9 +1,9 @@
 class TreeNode
-    attr_accessor :val, :left, :right
-    def initialize(val)
-        @val = val
-        @left, @right = nil, nil
-    end
+  attr_accessor :val, :left, :right
+  def initialize(val)
+    @val = val
+    @left, @right = nil, nil
+  end
 end
 
 class TreeNodeUtil
@@ -23,12 +23,12 @@ class TreeNodeUtil
     def self._treenode_to_array(node)
       return [] if node.nil?
 
-      l = self._treenode_to_array(node.left)
-      r = self._treenode_to_array(node.right)
+      l = _treenode_to_array(node.left)
+      r = _treenode_to_array(node.right)
 
       result = []
       max_depth = self.max_depth(node)
-      for i in 1..max_depth
+      (1..max_depth).each do |i|
         ll = l.empty? ? Array.new(2 ** (i - 1), nil) : l.pop
         rr = r.empty? ? Array.new(2 ** (i - 1), nil) : r.pop
         result.unshift(ll + rr)
@@ -40,29 +40,27 @@ class TreeNodeUtil
     result = []
     _treenode_to_array(node).reverse.each do |la|
       break if la.compact.empty?
+
       result += la
     end
 
-    while result.last.nil? do
-      result.pop
-    end
-
+    result.pop while result.last.nil?
     result
   end
 
   def self.max_depth(root)
     def self._max_depth(node, depth)
-      if node.nil? then
+      if node.nil?
         depth
       else
-        return [
+        [
           depth,
-          self._max_depth(node.left, depth + 1),
-          self._max_depth(node.right, depth + 1)
+          _max_depth(node.left, depth + 1),
+          _max_depth(node.right, depth + 1)
         ].max
       end
     end
 
-    self._max_depth(root, 0)
+    _max_depth(root, 0)
   end
 end
