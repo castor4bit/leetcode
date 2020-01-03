@@ -4,7 +4,7 @@ require '../../../structures/treenode'
 
 class LeetCodeSolutionTest < Test::Unit::TestCase
   def test_5153
-    root = TreeNodeUtil.array_to_treenode([1,2,3,4,5,nil,6,7,nil,nil,nil,nil,nil,nil,8])
+    root = TreeNodeUtil.array_to_treenode([1,2,3,4,5,nil,6,7,nil,nil,nil,nil,8])
     assert_equal 15, deepest_leaves_sum(root)
 
     root = TreeNodeUtil.array_to_treenode([1])

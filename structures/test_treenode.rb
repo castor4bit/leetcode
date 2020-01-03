@@ -23,6 +23,15 @@ class TreeNodeUtilTest < Test::Unit::TestCase
     assert_equal 20, head.right.val
     assert_equal 15, head.right.left.val
     assert_equal 7, head.right.right.val
+
+    head = TreeNodeUtil.array_to_treenode([1, 2, 2, 3, nil, nil, 3, 4, nil, nil, 4])
+    assert_equal 1, head.val
+    assert_equal 2, head.left.val
+    assert_equal 2, head.right.val
+    assert_equal 3, head.left.left.val
+    assert_equal 3, head.right.right.val
+    assert_equal 4, head.left.left.left.val
+    assert_equal 4, head.right.right.right.val
   end
 
   def test_treenode_to_array

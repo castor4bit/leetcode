@@ -16,7 +16,7 @@ class LeetCodeSolutionTest < Test::Unit::TestCase
     head = TreeNodeUtil.array_to_treenode([1, nil, 2])
     assert_equal 2, max_depth(head)
 
-    head = TreeNodeUtil.array_to_treenode([1, nil, 2, nil, nil, 3, 4])
+    head = TreeNodeUtil.array_to_treenode([1, nil, 2, 3, 4])
     assert_equal 3, max_depth(head)
 
     head = TreeNodeUtil.array_to_treenode([3, 9, 20, nil, nil, 15, 7])

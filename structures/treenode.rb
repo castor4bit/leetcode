@@ -8,6 +8,8 @@ end
 
 class TreeNodeUtil
   def self.array_to_treenode(a, pos = 1)
+    _rebuild_array(a) if pos == 1
+
     val = a[pos - 1]
     return nil if val.nil?
 
@@ -18,8 +20,27 @@ class TreeNodeUtil
     node
   end
 
-  def self.treenode_to_array(node)
+  def self._rebuild_array(a)
+    depth = 1
+    loop do
+      base = 2 ** (depth - 1) - 1
+      break if base >= a.size
 
+      (base..(base * 2)).each do |i|
+        pidx = (i - 1) / 2
+        if pidx > 0 && a[pidx].nil?
+          a.insert(i, nil)
+        end
+      end
+
+      break if depth > 5
+
+      depth += 1
+    end
+    a
+  end
+
+  def self.treenode_to_array(node)
     def self._treenode_to_array(node)
       return [] if node.nil?
 
