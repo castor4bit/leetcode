@@ -7,19 +7,23 @@ def min_taps(n, ranges)
     l = [0, i - v].max
     r = [i + v, n].min
 
-    (l..r).each do |j|
-      t[j] = [t[j], r].max
-    end
+    t[l] = [t[l], r].max
   end
 
   count = 0
-  idx = 0
-  while idx < n
-    break if t[idx] == 0
+  i = 0
+  j = 0
+  k = 0
+  while i < n
+    while j <= i
+      k = [k, t[j]].max
+      j += 1
+    end
+    break if k <= i
 
     count += 1
-    idx = t[idx]
+    i = k
   end
 
-  idx < n ? -1 : count
+  i < n ? -1 : count
 end
