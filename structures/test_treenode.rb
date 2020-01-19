@@ -45,6 +45,9 @@ class TreeNodeUtilTest < Test::Unit::TestCase
     node = TreeNode.new(1)
     node.right = TreeNode.new(2)
     assert_equal [1, nil, 2], TreeNodeUtil.treenode_to_array(node)
+
+    node = nil
+    assert_equal [], TreeNodeUtil.treenode_to_array(node)
   end
 end
 

@@ -65,7 +65,7 @@ class TreeNodeUtil
       result += la
     end
 
-    result.pop while result.last.nil?
+    result.pop while !result.empty? && result.last.nil?
     result
   end
 
