@@ -1,8 +1,6 @@
 # @param {Integer[][]} points
 # @return {Integer}
 def number_of_boomerangs(points)
-  #return points.size if points.size <= 2
-
   count = 0
   len = points.size - 1
   (0..len).each do |i|
