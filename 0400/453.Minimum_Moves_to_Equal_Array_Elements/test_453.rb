@@ -16,6 +16,6 @@ class LeetCodeSolutionTest < Test::Unit::TestCase
     assert_equal 5009418, min_moves(nums)
 
     nums = eval(File.read('./data3.txt'))
-    assert_equal 5009418, min_moves(nums)
+    assert_equal 4986353, min_moves(nums)
   end
 end
