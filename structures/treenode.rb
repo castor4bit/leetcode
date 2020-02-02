@@ -7,37 +7,29 @@ class TreeNode
 end
 
 class TreeNodeUtil
-  def self.array_to_treenode(a, pos = 1)
-    _rebuild_array(a) if pos == 1
+  def self.array_to_treenode(a)
+    return nil if a.empty?
 
-    val = a[pos - 1]
-    return nil if val.nil?
+    root = TreeNode.new(a.shift)
+    q = [root]
 
-    node = TreeNode.new(val)
-    node.left = array_to_treenode(a, pos * 2)
-    node.right = array_to_treenode(a, pos * 2 + 1)
+    until q.empty?
+      node = q.shift
 
-    node
-  end
+      left = a.shift
+      right = a.shift
 
-  def self._rebuild_array(a)
-    depth = 1
-    loop do
-      base = 2 ** (depth - 1) - 1
-      break if base >= a.size
-
-      (base..(base * 2)).each do |i|
-        pidx = (i - 1) / 2
-        if pidx > 0 && a[pidx].nil?
-          a.insert(i, nil)
-        end
+      unless left.nil?
+        node.left = TreeNode.new(left)
+        q.push(node.left)
       end
-
-      break if depth > 5
-
-      depth += 1
+      unless right.nil?
+        node.right = TreeNode.new(right)
+        q.push(node.right)
+      end
     end
-    a
+
+    root
   end
 
   def self.treenode_to_array(node)
