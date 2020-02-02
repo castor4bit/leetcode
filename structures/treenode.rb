@@ -33,47 +33,23 @@ class TreeNodeUtil
   end
 
   def self.treenode_to_array(node)
-    def self._treenode_to_array(node)
-      return [] if node.nil?
-
-      l = _treenode_to_array(node.left)
-      r = _treenode_to_array(node.right)
-
-      result = []
-      max_depth = self.max_depth(node)
-      (1..max_depth).each do |i|
-        ll = l.empty? ? Array.new(2 ** (i - 1), nil) : l.pop
-        rr = r.empty? ? Array.new(2 ** (i - 1), nil) : r.pop
-        result.unshift(ll + rr)
-      end
-
-      result.push([node.val])
-    end
-
     result = []
-    _treenode_to_array(node).reverse.each do |la|
-      break if la.compact.empty?
+    q = []
 
-      result += la
+    q.push(node)
+    until q.empty?
+      n = q.shift
+
+      if n.nil?
+        result.push(nil)
+      else
+        result.push(n.val)
+        q.push(n.left)
+        q.push(n.right)
+      end
     end
 
     result.pop while !result.empty? && result.last.nil?
     result
-  end
-
-  def self.max_depth(root)
-    def self._max_depth(node, depth)
-      if node.nil?
-        depth
-      else
-        [
-          depth,
-          _max_depth(node.left, depth + 1),
-          _max_depth(node.right, depth + 1)
-        ].max
-      end
-    end
-
-    _max_depth(root, 0)
   end
 end
