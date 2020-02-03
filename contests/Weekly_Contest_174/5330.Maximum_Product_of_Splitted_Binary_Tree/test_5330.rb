@@ -16,8 +16,9 @@ class LeetCodeSolutionTest < Test::Unit::TestCase
     root = TreeNodeUtil.array_to_treenode([1, 1])
     assert_equal 1, max_product(root)
 
-#     data = eval(File.read('./data1.txt'))
-#     root = TreeNodeUtil.array_to_treenode(data)
-#     assert_equal 757667725, max_product(root)
+    # RUBY_THREAD_VM_STACK_SIZE=8388608 (8KB)
+    data = eval(File.read('./data1.txt'))
+    root = TreeNodeUtil.array_to_treenode(data)
+    assert_equal 757667725, max_product(root)
   end
 end

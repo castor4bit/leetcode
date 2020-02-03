@@ -11,9 +11,17 @@
 # @return {Integer}
 def max_product(root)
   def sum(node)
-    return 0 if node.nil?
+    s = 0
+    q = [node]
+    until q.empty?
+      n = q.pop
+      s += n.val
 
-    node.val + sum(node.left) + sum(node.right)
+      q.push(n.left) unless n.left.nil?
+      q.push(n.right) unless n.right.nil?
+    end
+
+    s
   end
 
   def dfs(node, allsum)
