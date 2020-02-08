@@ -11,5 +11,8 @@ class LeetCodeSolutionTest < Test::Unit::TestCase
 
     arr = eval(File.read('./data1.txt'))
     assert_equal 9, min_jumps(arr)
+
+    arr = eval(File.read('./data2.txt'))
+    assert_equal 2, min_jumps(arr)
   end
 end
