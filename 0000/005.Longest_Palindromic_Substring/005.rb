@@ -3,21 +3,26 @@
 def longest_palindrome(s)
   return "" if s.empty?
 
-  def is_palindrome(s)
-    i = 0
-    while i < s.size / 2
-      return false if s[i] != s[-i - 1]
+  ll = 0
+  rr = 0
+  (0..s.size - 1).each do |i|
+    len = 0
+    (0..1).each do |j|
+      l = i
+      r = i + j
+      while l >= 0 && r < s.size && s[l] == s[r]
+        l -= 1
+        r += 1
+      end
 
-      i += 1
+      len = r - l - 1 if len < r - l - 1
     end
-    true
+
+    if len > rr - ll
+      ll = i - (len - 1) / 2
+      rr = i + len / 2
+    end
   end
 
-  (2..s.size).to_a.reverse.each do |len|
-    (0..s.size - len).each do |i|
-      return s[i, len] if is_palindrome(s[i, len])
-    end
-  end
-
-  s[0]
+  s[ll..rr]
 end
