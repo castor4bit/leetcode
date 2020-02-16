@@ -1,8 +1,6 @@
 class ProductOfNumbers
     def initialize()
-      @numbers = []
-      @memo = {}
-      @zeropos = 1
+      @products = [1]
     end
 
 
@@ -11,11 +9,11 @@ class ProductOfNumbers
     :rtype: Void
 =end
     def add(num)
-      @numbers.push(num)
-      @memo = {}
-
-      @zeropos = 0 if num.zero?
-      @zeropos += 1
+      if num == 0
+        @products = [1]
+      else
+        @products.push(@products[-1] * num)
+      end
     end
 
 
@@ -24,10 +22,9 @@ class ProductOfNumbers
     :rtype: Integer
 =end
     def get_product(k)
-      return @memo[k] if @memo.key?(k)
-      return 0 if k >= @zeropos
+      return 0 if k >= @products.size
 
-      @memo[k] = @numbers[-k..-1].inject(1, :*)
+      @products[-1] / @products[-k - 1]
     end
 
 
