@@ -11,34 +11,14 @@
 # @param {TreeNode} t
 # @return {Boolean}
 def is_subtree(s, t)
+  return false if s.nil?
 
-  def tree_to_s(root)
-    q = [root]
-    tt = []
-    until q.empty?
-      node = q.shift
-      if node.nil?
-        tt.push(nil)
-        next
-      end
+  def equals(s, t)
+    return true if s.nil? && t.nil?
+    return false if s.nil? || t.nil?
 
-      tt.push(node.val)
-      q += [node.left, node.right]
-    end
-
-    tt.join('.')
+    s.val == t.val && equals(s.left, t.left) && equals(s.right, t.right)
   end
 
-  ts = tree_to_s(t)
-
-  q = [s]
-  until q.empty?
-    node = q.pop
-    return true if node.val == t.val && ts == tree_to_s(node)
-
-    q.push(node.left) unless node.left.nil?
-    q.push(node.right) unless node.right.nil?
-  end
-
-  false
+  equals(s, t) || is_subtree(s.left, t) || is_subtree(s.right, t)
 end
